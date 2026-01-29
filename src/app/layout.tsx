@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { Nanum_Pen_Script } from "next/font/google";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+export const nanumPenScript = Nanum_Pen_Script({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Template-NEXT",
@@ -21,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn("relative h-full antialiased", inter.className)}
+        className={cn("relative h-full antialiased", nanumPenScript.className)}
       >
         <main className="relative flex min-h-screen flex-col">
-          <div className="flex-1 flex-grow">{children}</div>
+          <div className="flex-1 grow">{children}</div>
         </main>
       </body>
     </html>
