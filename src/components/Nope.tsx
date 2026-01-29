@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { Variants } from "framer-motion";
 import { Button } from "./ui/button";
 import { Info, RotateCcw } from "lucide-react";
+import Link from "next/link";
 
 type Pull = {
   reason: string;
@@ -151,15 +152,28 @@ export default function Nope() {
         )}
       </div>
 
-      <Button
-        size={"icon-sm"}
-        onClick={runPull}
-        disabled={isLoading}
-        className="absolute right-0 top-0 m-4 hover:scale-[1.05] active:scale-[1]"
-        variant={"secondary"}
-      >
-        <RotateCcw />
-      </Button>
+      <div className="absolute bottom-0 right-0 m-4 flex h-fit items-center gap-2 lg:top-0">
+        <Button
+          size={"icon-sm"}
+          className="hover:scale-[1.05] active:scale-[1]"
+          variant={"secondary"}
+          asChild
+        >
+          <Link href="/about">
+            <Info />
+          </Link>
+        </Button>
+
+        <Button
+          size={"icon-sm"}
+          onClick={runPull}
+          disabled={isLoading}
+          className="hover:scale-[1.05] active:scale-[1]"
+          variant={"secondary"}
+        >
+          <RotateCcw />
+        </Button>
+      </div>
     </div>
   );
 }

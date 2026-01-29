@@ -9,11 +9,21 @@ export const nanumPenScript = Nanum_Pen_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Template-NEXT",
+  title: "Project No — Home",
   description:
-    "A clean Next.js template with TypeScript, TailwindCSS, Shadcn/ui, and Prettier, developed by Thilina Rathnayaka (A.K.A Edward Hyde). Optimized for quick project setup with handy packages.",
-  keywords: ["Next.js", "TypeScript", "TailwindCSS", "Shadcn/ui", "Template"],
-  authors: [{ name: "Thilina R. (Edward Hyde)", url: "https://thilina.dev" }],
+    "Project No is a tiny Next.js app that fetches a random “nope” reason and generates a random avatar.",
+  keywords: [
+    "Project No",
+    "Next.js",
+    "TypeScript",
+    "TailwindCSS",
+    "shadcn/ui",
+    "DiceBear",
+    "No as a Service",
+  ],
+  authors: [
+    { name: "Thilina Rathnayaka (Edward Hyde)", url: "https://thilina.dev" },
+  ],
 };
 
 export default function RootLayout({
