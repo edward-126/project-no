@@ -1,92 +1,120 @@
-# project-no
+# Project No
 
-A modern Next.js application created with **Template Next**.
+A tiny Next.js app that fetches a random “nope” reason and generates a matching avatar.
 
-## 🚀 Tech Stack
+- **Reasons**: “No as a Service” (`https://naas.isalman.dev/no`)
+- **Avatars**: DiceBear `notionists-neutral` (SVG)
 
-- **Next.js 16** - React framework with App Router
-- **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first CSS framework
-- **Shadcn/ui** - Beautiful, accessible UI components
-- **Prettier** - Code formatting with Tailwind plugin
+## Demo
 
-## 🛠️ Getting Started
+Site link: https://project-naas.vercel.app/
 
-### Prerequisites
+## Tech Stack
 
-- Node.js 20.9 or later
-- npm, yarn, or pnpm
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- shadcn/ui + lucide-react
+- DiceBear Avatars (SVG)
+- No as a Service (NaaS)
 
-### Installation
+## How it works
 
-1. Install dependencies:
+1. The client calls **`/api/no`**.
+2. `GET /api/no` proxies the request to **No as a Service** (`https://naas.isalman.dev/no`).
+3. The route returns JSON like:
+
+   ```json
+   { "reason": "..." }
+   ```
+
+4. The UI generates a random seed and loads an SVG avatar from DiceBear.
+5. The avatar is preloaded so the “face + reason” appears together.
+
+## API
+
+### `GET /api/no`
+
+* Returns: `{ reason: string }`
+* No caching: uses `no-store` / `revalidate = 0`
+* Error handling:
+
+  * Upstream errors → `502`
+  * Fetch/network errors → `500`
+
+Upstream source: **No as a Service**
+
+* Endpoint: `https://naas.isalman.dev/no`
+* Expects `application/json` with a `reason` field
+
+## Avatar generation
+
+DiceBear style: `notionists-neutral`
+
+Example pattern:
+
+```
+https://api.dicebear.com/9.x/notionists-neutral/svg?seed=YOUR_SEED
+```
+
+## Getting started
+
+### 1) Clone
+
+```bash
+git clone https://github.com/edward-126/project-no.git
+cd project-no
+```
+
+### 2) Install dependencies
+
+Use whichever package manager you prefer:
 
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
+# or: pnpm install
+# or: yarn
+# or: bun install
 ```
 
-2. Run the development server:
+### 3) Run the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# or: pnpm dev
+# or: yarn dev
+# or: bun dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Then open `http://localhost:3000`.
 
-## 📁 Project Structure
-
-```
-project-no/
-├── src/
-│   ├── app/
-│   │   ├── globals.css      # Shadcn/ui + Tailwind styles
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   ├── components/
-│   │   └── ui/              # Shadcn/ui components
-│   └── lib/
-├── public/
-├── .prettierrc
-├── .vscode/
-│   └── settings.json
-├── components.json          # Shadcn/ui configuration
-├── next.config.ts
-├── postcss.config.mjs
-├── eslint.config.mjs
-├── tsconfig.json
-└── package.json
-```
-
-## 🎨 Adding Components
-
-This project uses Shadcn/ui. Add new components:
+### 4) Build for production
 
 ```bash
-npx shadcn@latest add button
-npx shadcn@latest add card
-npx shadcn@latest add input
+npm run build
+npm run start
 ```
 
-## 📝 Available Scripts
+## Deploy
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Lint code with ESLint
-- `npm run format` - Format code with Prettier
+This app is a great fit for **Vercel** (recommended for Next.js).
+You can also deploy to Netlify, Railway, Render, etc. as long as Next.js App Router is supported.
 
-## 🤝 Contributing
+## Contributing
 
-Created with [Template Next](https://www.npmjs.com/package/@edward-hyde/template-next)
+PRs are welcome!
 
-## 📄 License
+* If you find a bug or have an idea, open an issue:
 
-MIT License
+  * [https://github.com/edward-126/project-no/issues](https://github.com/edward-126/project-no/issues)
+* Keep changes small and focused
+* Run the app locally before submitting
+
+## Credits
+
+* No as a Service: [https://github.com/hotheadhacker/no-as-a-service](https://github.com/hotheadhacker/no-as-a-service)
+* DiceBear Avatars: [https://www.dicebear.com/](https://www.dicebear.com/)
+
+## Author
+
+**Thilina Rathnayaka (Edward Hyde)**
+[https://thilina.dev](https://thilina.dev)
