@@ -36,7 +36,7 @@ export default function RootLayout({
       <body
         className={cn("relative h-full antialiased", nanumPenScript.className)}
       >
-        <main className="relative flex min-h-screen flex-col">
+        <main className="relative flex min-h-dev flex-col">
           <div className="flex-1 grow">{children}</div>
         </main>
       </body>
