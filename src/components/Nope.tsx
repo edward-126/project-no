@@ -143,7 +143,19 @@ export default function Nope() {
           animate={pull && status === "ready" ? "show" : "hidden"}
         >
           {pull && status === "ready"
-            ? new Date(pull.pulledAt).toLocaleString()
+            ? (() => {
+                const dt = new Date(pull.pulledAt);
+                const date = dt.toLocaleDateString("en-US");
+                const time = dt
+                  .toLocaleTimeString("en-US", {
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                  })
+                  .replace(/\s/g, "");
+
+                return `${date} - ${time}`;
+              })()
             : ""}
         </motion.p>
 
